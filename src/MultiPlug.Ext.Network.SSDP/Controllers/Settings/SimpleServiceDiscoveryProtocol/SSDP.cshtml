@@ -1,0 +1,101 @@
+﻿@model MultiPlug.Base.Http.EdgeApp
+
+<form action="" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+    <section class="row-fluid">
+
+        <div class="row-fluid">
+            <div class="box">
+                <div class="span4">
+                    <a style="line-height: 52px;" href="#"><img alt="Network Logo" src="@Raw(Model.Context.Paths.Assets)images/networks.png"></a>
+                </div>
+                <div class="span3">
+                    <p style="font-size:26px; line-height: 27px; text-align: center; margin: 0px;">Simple Service</p>
+                    <p style="font-size:26px; line-height: 27px; text-align: center; margin: 0px;">Discovery Protocol</p>
+                </div>
+                <div class="span5" style="text-align: right;">
+                    <a class="btn btn-black" style="height:44px; width:35px" href="@Raw(Model.Context.Paths.Home)"><i class="icon-arrow-left icon-large"></i><p>Back</p></a>
+                    <button type="submit" value="submit" style="height:54px; width:65px" class="item btn btn-green"><i class="icon-save icon-large"></i><p>Save</p></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+
+            <input type="hidden" name="guid" value="@Model.Extension.Model.Guid">
+
+            <div class="box non-collapsible">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="row-fluid"><div class="span12">Search Target</div></div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="input-prepend span12">
+                                    <div class="btn-group">
+                                        <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                            <span class="caret">
+                                            </span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="DiscoveryTargetSuggestion" href="#">urn:dial-multiscreen-org:device:dial:1</a>
+                                            </li>
+                                            <li>
+                                                <a class="DiscoveryTargetSuggestion" href="#">urn:schemas-upnp-org:device:BrainboxesED:1</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <input id="DiscoveryTargetValue" name="discoverytarget" class="span11" type="text" placeholder="Search Target" value="@Model.Extension.Model.DiscoveryTarget">
+                                </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+
+                    <div class="span4">
+                        <div class="row-fluid"><div class="span12">Subscription</div></div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="span12">
+                                    @*<select name="[@ClassModel.ComponentKey][@Model.Extension.Model.Component.Guid][@ClassModel.SubscriptionKey][]" class="js-mpevent-select">
+                                        <option value="@Model.Extension.Model.Component.SearchSubscription.Id">@Model.Extension.Model.Component.SearchSubscription.Id</option>
+                                    </select>*@
+                                    <input name="subscription" class="input-block-level mp-event-picker" type="text" value="@Model.Extension.Model.SearchSubscription.Id" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <div class="row-fluid"><div class="span12">Event ID</div></div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <input name="eventid" class="input-block-level" type="text" placeholder="Event ID" value="@Model.Extension.Model.DiscoveryEvent.Id">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span4">
+                        <div class="span12">
+                            <div class="row-fluid"><div class="span12">Description</div></div>
+                            <div class="row-fluid"><div class="span12"><input name="eventdescription" class="input-block-level" type="text" placeholder="Description" value="@Model.Extension.Model.DiscoveryEvent.Description"></div></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script>
+    $('.DiscoveryTargetSuggestion').click(function (event) {
+        event.preventDefault();
+        $("#DiscoveryTargetValue").val($(this).text());
+    });
+</script>
+

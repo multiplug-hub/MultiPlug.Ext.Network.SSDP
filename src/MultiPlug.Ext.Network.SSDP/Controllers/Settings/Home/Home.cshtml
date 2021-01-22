@@ -1,0 +1,45 @@
+﻿@model MultiPlug.Base.Http.EdgeApp
+
+<section class="row-fluid">
+
+    <div class="row-fluid">
+        <div class="box">
+            <div class="span4">
+                <a style="line-height: 52px;" href="#"><img alt="Network Logo" src="@Raw(Model.Context.Paths.Assets)images/networks.png"></a>
+            </div>
+            <div class="span3">
+                <p style="font-size:26px; line-height: 27px; text-align: center; margin: 0px;">Simple Service</p>
+                <p style="font-size:26px; line-height: 27px; text-align: center; margin: 0px;">Discovery Protocol</p>
+            </div>
+            <div class="span5" style="text-align: right;">
+                <a class="btn btn-orange" style="height:44px; width:35px" href="@Raw(Model.Context.Paths.Home)ssdp/"><i class="icon-time icon-plus"></i><p>New</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="box non-collapsible">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Discovery Target</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var SSDP in @Model.Extension.Model.SSDPs)
+                    {
+                        <tr>
+                            <td><a href="@Raw(Model.Context.Paths.Home)ssdp/?id=@SSDP.Guid">@SSDP.Guid</a></td>
+                            <td><a href="@Raw(Model.Context.Paths.Home)ssdp/?id=@SSDP.Guid">@SSDP.DiscoveryTarget</a></td>
+                            <td><a class="btn btn-red delete-channel" href="@Raw(Model.Context.Paths.Home)ssdp/delete/?id=@SSDP.Guid"><i class="icon-trash"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
